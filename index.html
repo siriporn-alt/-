@@ -140,7 +140,7 @@
                 🍄 หมู่บ้านเห็ดตรวจสอบอีเมล 🍄
             </h1>
             <p class="text-white text-lg md:text-xl font-medium mt-1 drop-shadow-sm bg-white/30 inline-block px-4 py-1 rounded-full backdrop-blur-sm">
-                ค้นหานามสกุล ชื่อ หรือชั้นเรียน เพื่อดูอีเมลและรหัสผ่านของคุณครู
+                ค้นหานามสกุล ชื่อ หรือชั้นเรียน เพื่อดูอีเมลและรหัสผ่านของนักเรียน
             </p>
         </header>
 
@@ -164,7 +164,7 @@
             <div class="relative max-w-2xl mx-auto mb-8">
                 <div class="relative flex items-center">
                     <input type="text" id="searchInput" oninput="filterStudents()" 
-                        placeholder="พิมพ์ชื่อ, นามสกุล หรือ ชั้นเรียน (เช่น ป.1/1)..." 
+                        placeholder="พิมพ์ชื่อ, นามสกุล หรือ ชั้นเรียน (เช่น ป.5/1)..." 
                         class="w-full pl-14 pr-12 py-4 text-lg md:text-xl font-medium rounded-2xl border-4 border-sky-300 focus:border-sky-500 focus:outline-none shadow-inner transition-colors bg-sky-50/50">
                     <div class="absolute left-4 text-sky-400 text-2xl pointer-events-none">
                         <i class="fa-solid fa-magnifying-glass"></i>
@@ -205,9 +205,6 @@
                     <button onclick="openAddModal()" class="flex-1 md:flex-initial bg-grass-green hover:bg-green-600 text-white font-bold px-4 py-2.5 rounded-xl shadow-md hover:scale-105 transition-all text-sm flex items-center justify-center gap-2">
                         <i class="fa-solid fa-plus-circle"></i> เพิ่มนักเรียนใหม่
                     </button>
-                    <button onclick="resetDefaultData()" class="bg-gray-200 hover:bg-gray-300 text-gray-700 font-bold px-3 py-2.5 rounded-xl text-sm title="คืนค่าข้อมูลเริ่มต้น">
-                        <i class="fa-solid fa-rotate-left"></i>
-                    </button>
                     <button onclick="closeTeacherMode()" class="bg-red-500 hover:bg-red-600 text-white font-bold px-4 py-2.5 rounded-xl text-sm">
                         <i class="fa-solid fa-right-from-bracket mr-1"></i> ออกจากระบบครู
                     </button>
@@ -219,8 +216,8 @@
                 <table class="w-full text-left border-collapse">
                     <thead>
                         <tr class="bg-amber-100/70 text-amber-900 text-sm md:text-base border-b border-amber-200">
-                            <th class="p-3.5">รหัสนักเรียน</th>
-                            <th class="p-3.5">ชื่อ-นามสกุล</th>
+                            <th class="p-3.5">ชื่อ</th>
+                            <th class="p-3.5">นามสกุล</th>
                             <th class="p-3.5">ชั้นเรียน</th>
                             <th class="p-3.5">อีเมล (Username)</th>
                             <th class="p-3.5">รหัสผ่าน</th>
@@ -337,11 +334,11 @@
     <script>
         // Initial Dummy Data
         const initialStudents = [
-            { id: "STD-001", name: "เด็กชาย ปัญญา เรียนดี", grade: "ป.1/1", email: "panya.r@mushroom.ac.th", password: "Mushroom#123" },
-            { id: "STD-002", name: "เด็กหญิง น่ารัก สดใส", grade: "ป.1/1", email: "narak.s@mushroom.ac.th", password: "Happy999$" },
-            { id: "STD-003", name: "เด็กชาย กล้าหาญ ชาญชัย", grade: "ป.1/2", email: "klahan.c@mushroom.ac.th", password: "Hero2026!" },
-            { id: "STD-004", name: "เด็กหญิง มะลิ หอมจันทร์", grade: "ป.2/1", email: "mali.h@mushroom.ac.th", password: "Flower456" },
-            { id: "STD-005", name: "เด็กชาย ธันวา ใจกว้าง", grade: "ป.2/2", email: "thanwa.j@mushroom.ac.th", password: "Star777#" }
+            { id: "STD-001", name: "เด็กชาย ปัญญา เรียนดี", grade: "ป.5/1", email: "panya.r@mushroom.ac.th", password: "bannathawee" },
+            { id: "STD-002", name: "เด็กหญิง น่ารัก สดใส", grade: "ป.5/1", email: "narak.s@mushroom.ac.th", password: "bannathawee" },
+            { id: "STD-003", name: "เด็กชาย กล้าหาญ ชาญชัย", grade: "ป.5/2", email: "klahan.c@mushroom.ac.th", password: "bannathawee" },
+            { id: "STD-004", name: "เด็กหญิง มะลิ หอมจันทร์", grade: "ป.5/1", email: "mali.h@mushroom.ac.th", password: "bannathawee" },
+            { id: "STD-005", name: "เด็กชาย ธันวา ใจกว้าง", grade: "ป.5/2", email: "thanwa.j@mushroom.ac.th", password: "bannathawee" }
         ];
 
         let students = [];
@@ -567,11 +564,10 @@
         function openAddModal() {
             document.getElementById('editIndex').value = "-1";
             document.getElementById('formTitle').innerHTML = `<i class="fa-solid fa-user-plus text-grass-green"></i> เพิ่มนักเรียนใหม่`;
-            document.getElementById('formStudentId').value = `STD-00${students.length + 1}`;
             document.getElementById('formName').value = '';
             document.getElementById('formGrade').value = '';
             document.getElementById('formEmail').value = '';
-            document.getElementById('formPassword').value = '';
+            document.getElementById('formPassword').bannathawee = '';
             document.getElementById('studentFormModal').classList.remove('hidden');
         }
 
@@ -579,7 +575,6 @@
             const st = students[index];
             document.getElementById('editIndex').value = index;
             document.getElementById('formTitle').innerHTML = `<i class="fa-solid fa-user-pen text-amber-500"></i> แก้ไขข้อมูลนักเรียน`;
-            document.getElementById('formStudentId').value = st.id;
             document.getElementById('formName').value = st.name;
             document.getElementById('formGrade').value = st.grade;
             document.getElementById('formEmail').value = st.email;
